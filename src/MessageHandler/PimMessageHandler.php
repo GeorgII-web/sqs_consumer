@@ -12,7 +12,7 @@ class PimMessageHandler
     {
     }
 
-    public function __invoke(PimMessage $message)
+    public function __invoke(PimMessage $message): void
     {
         echo ".";
     }

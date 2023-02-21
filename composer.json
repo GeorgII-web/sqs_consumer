@@ -8,6 +8,7 @@
         "ext-amqp": "*",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "php-amqplib/rabbitmq-bundle": "^2.11",
         "symfony/amazon-sqs-messenger": "6.2.*",
         "symfony/amqp-messenger": "6.2.*",
         "symfony/console": "6.2.*",

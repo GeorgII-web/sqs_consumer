@@ -11,11 +11,33 @@ framework:
 
         transports:
             # https://symfony.com/doc/current/messenger.html#transport-configuration
-            pim_rabbit:
-                dsn: "%env(MESSENGER_TRANSPORT_DSN)%"
+            pim_amqp:
+                dsn: "%env(MESSENGER_TRANSPORT_DSN_AMQP)%"
+#                options:
+#                    read_timeout: 1
+#                    write_timeout: 1
+#                    connect_timeout: 10
+#                    frame_max: 10240
+#                    confirm_timeout: 0
+#                    channel_max: 10
+#                    auto_setup: false
+#                    persistent: false
+#                    exchange:
+#                        type: 'fanout'
+#                        alternate-exchange: 'df'
+#                        flags: 1
+#                    queues: ~
+#                        streamtest:
+#                            arguments:
+#                                no_delay: 1
+#                            flags:
+#                                AMQP_DURABLE: true
+#                            type: 'stream'
+#                            type: 'stream'
 
-            pim:
-                dsn: "%env(MESSENGER_TRANSPORT_DSN)%"
+
+            pim_sqs:
+                dsn: "%env(MESSENGER_TRANSPORT_DSN_SQS)%"
                 options:
                     buffer_size: 10
                     debug: false
@@ -31,7 +53,7 @@ framework:
         routing:
             # Route your messages to the transports
             # 'App\Message\YourMessage': async
-            'App\Message\PimMessage': pim
+            'App\Message\PimMessage': pim_amqp
 
 # when@test:
 #    framework:
