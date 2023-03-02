@@ -11,6 +11,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Throwable;
+use OldSound\RabbitMqBundle\RabbitMq\ProducerInterface;
 
 #[AsCommand(name: 'message:dispatch')]
 class DispatchMessageCommand extends Command
@@ -19,7 +20,8 @@ class DispatchMessageCommand extends Command
 
     public function __construct(
         private readonly LoggerInterface $logger,
-        private readonly MessageBusInterface $bus
+        private readonly MessageBusInterface $bus,
+        private readonly ProducerInterface $producer
     ) {
         parent::__construct();
     }
@@ -53,7 +55,8 @@ class DispatchMessageCommand extends Command
                     ],
                 ]);
 
-                $this->bus->dispatch($message);
+//                $this->bus->dispatch($message);
+                $this->producer->publish('test');
 
                 echo '.';
                 //                $output->writeln('Dispatched, id=' . json_decode($message->getContent(), true, 512, JSON_THROW_ON_ERROR)['id']);

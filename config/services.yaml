@@ -20,5 +20,7 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
+    OldSound\RabbitMqBundle\RabbitMq\ProducerInterface: '@old_sound_rabbit_mq.messages_producer'
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
